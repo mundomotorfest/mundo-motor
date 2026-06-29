@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mundo Motor | Últimas noticias del automovilismo</title>
+    <style>
+        /* Estilos Generales y Tipografía estilo Periódico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Marquesina / Alerta superior */
+        .alerta-bar {
+            background-color: #e10600; /* Rojo Fórmula */
+            color: white;
+            text-align: center;
+            padding: 5px 0;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Cabecera Principal */
+        header {
+            background-color: #1f2937;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 5px solid #e10600;
+        }
+
+        header h1 {
+            font-size: 42px;
+            font-family: 'Georgia', serif;
+            font-weight: 900;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        header p {
+            font-size: 14px;
+            color: #9ca3af;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        /* Barra de Navegación */
+        nav {
+            background-color: #111827;
+            display: flex;
+            justify-content: center;
+            grid-gap: 20px;
+            padding: 12px 0;
+        }
+
+        nav a {
+            color: #ef4444;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 5px 15px;
+            transition: all 0.3s;
+        }
+
+        nav a:hover, nav a.activo {
+            color: white;
+            background-color: #e10600;
+            border-radius: 4px;
+        }
+
+        /* Contenedor Principal (Layout de dos columnas) */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-gap: 30px;
+        }
+
+        /* Columna de la Noticia Principal */
+        .noticia-principal {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .categoria {
+            color: #e10600;
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .noticia-principal h2 {
+            font-family: 'Georgia', serif;
+            font-size: 34px;
+            line-height: 1.2;
+            margin-bottom: 15px;
+            color: #111827;
+        }
+
+        .metadatos {
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 10px;
+        }
+
+        .imagen-noticia {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .epilogo-foto {
+            font-size: 12px;
+            color: #6b7280;
+            font-style: italic;
+            margin-bottom: 25px;
+            padding-left: 5px;
+            border-left: 3px solid #e10600;
+        }
+
+        .cuerpo-texto p {
+            font-size: 16px;
+            color: #374151;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .destacado {
+            font-family: 'Georgia', serif;
+            font-size: 20px;
+            font-style: italic;
+            color: #111827;
+            border-left: 4px solid #e10600;
+            padding-left: 20px;
+            margin: 25px 0;
+            font-weight: 600;
+        }
+
+        /* Columna Lateral (Sidebar) */
+        sidebar {
+            display: flex;
+            flex-direction: column;
+            grid-gap: 20px;
+        }
+
+        .widget {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .widget h3 {
+            font-size: 16px;
+            text-transform: uppercase;
+            border-bottom: 2px solid #111827;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            color: #111827;
+            letter-spacing: 0.5px;
+        }
+
+        .lista-tendencias {
+            list-style: none;
+        }
+
+        .lista-tendencias li {
+            padding: 12px 0;
+            border-bottom: 1px solid #f3f4f6;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .lista-tendencias li:last-child {
+            border-bottom: none;
+        }
+
+        .numero {
+            font-size: 24px;
+            font-weight: bold;
+            color: #e10600;
+            margin-right: 15px;
+            font-family: 'Georgia', serif;
+            line-height: 1;
+        }
+
+        .tendencia-texto a {
+            color: #374151;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .tendencia-texto a:hover {
+            color: #e10600;
+        }
+
+        .encuesta-box p {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .opcion-progreso {
+            margin-bottom: 12px;
+        }
+
+        .opcion-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .barra-gris {
+            background-color: #e5e7eb;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .barra-roja {
+            background-color: #e10600;
+            height: 100%;
+        }
+
+        /* Pie de página */
+        footer {
+            background-color: #111827;
+            color: #9ca3af;
+            text-align: center;
+            padding: 25px;
+            font-size: 13px;
+            margin-top: 4px;
+            border-top: 4px solid #e10600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="alerta-bar">
+        EN VIVO: Próximas sesiones libres desde el circuito de Nürburgring, Alemania
+    </div>
+
+    <header>
+        <h1>MUNDO MOTOR</h1>
+        <p>El pulso del automovilismo internacional y los secretos del paddock</p>
+    </header>
+
+    <nav>
+        <a href="#">Inicio</a>
+        <a href="#" class="activo">Fórmula 1</a>
+        <a href="#">Fórmula Academy</a>
+        <a href="#">WRC</a>
+        <a href="#">Paddock & Estilo</a>
+    </nav>
+
+    <div class="container">
+        
+        <main class="noticia-principal">
+            <span class="categoria">Exclusiva / Paddock Gossip</span>
+            <h2>Baztarrica busca conquistar Alemania con una motivación muy especial: "Quiero impresionar a mi chica en su cumpleaños"</h2>
+            
+            <div class="metadatos">
+                Por <strong>Redacción Mundo Motor</strong> | Publicado el 22 de Junio, 2026
+            </div>
+
+            <img src="baztarrica.jpg" alt="Santiago Baztarrica en su monoplaza" class="imagen-noticia">
+            <div class="epilogo-foto">Santiago Baztarrica concentrado dentro de su monoplaza antes de salir a la pista en territorio alemán.</div>
+
+            <div class="cuerpo-texto">
+                <p>La presión en el asfalto europeo siempre es extrema, pero este fin de semana las miradas no están puestas únicamente en la telemetría, los neumáticos o la carga aerodinámica de los monoplazas. <strong>Santiago Baztarrica</strong> ha encendido las alarmas de los radares informáticos y de la prensa del corazón tras unas declaraciones que mezclan a la perfección la alta competencia con el romanticismo puro a pie de pista.</p>
+
+                <p>El joven piloto dejó en claro que la cita en Alemania no es una carrera más en el calendario. Al ser consultado por sus expectativas para las sesiones clasificatorias y el ritmo del auto en tandas largas, sorprendió a todos los presentes con una sonrisa cómplice y una confesión inesperada sobre sus verdaderos objetivos para el domingo.</p>
+
+                <div class="destacado">
+                    "Este fin de semana voy a intentar dar absolutamente lo mejor de mí en la pista. Quiero hacer una carrera perfecta e impresionar a mi chica; es su cumpleaños y sé que me estará mirando atentamente", declaró el piloto.
+                </div>
+
+                <p>Como era de esperarse, la confesión desató una ola de murmullos inmediatos en el pitlane. El paddock de la categoría ya se convirtió en un nido de especulaciones y teorías: ¿quién es la misteriosa afortunada que le roba los suspiros al piloto bajo el casco? Los rumores del entorno de las conocidas <strong>WAGs</strong> (Wives and Girlfriends) apuntan a que podría tratarse de una relación mantenida bajo estricto perfil bajo, lejos del ojo público de las redes sociales.</p>
+
+                <p>A pesar de la insistencia de los cronistas por conseguir un nombre, una inicial o alguna pista certera, Baztarrica prefirió volver a colocarse el rol de profesional y mantener el misterio guardado bajo llave, asegurando que su enfoque principal sigue estando en clavar los frenos en el momento justo y cuidar la degradación para regalarle, idealmente, un trofeo en el podio a su pareja.</p>
+                
+                <p>¿Logrará el piloto coronar el fin de semana con el mejor regalo de cumpleaños posible, o la presión de la dedicatoria jugará en contra a altas velocidades? Lo único certero es que Alemania tendrá un condimento extra y un incentivo de puro romance en cada vuelta al circuito.</p>
+            </div>
+        </main>
+
+        <sidebar>
+            
+            <div class="widget">
+                <h3>Lo más leído</h3>
+                <ul class="lista-tendencias">
+                    <li>
+                        <div class="numero">1</div>
+                        <div class="tendencia-texto">
+                            <a href="#">¿Quién es la misteriosa pareja de Baztarrica? Las redes sociales buscan pistas.</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="numero">2</div>
+                        <div class="tendencia-texto">
+                            <a href="#">Análisis técnico: Las modificaciones aerodinámicas clave para el circuito alemán.</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="numero">3</div>
+                        <div class="tendencia-texto">
+                            <a href="#">Alain Prost y su histórico récord en el Gran Premio de Brasil que sigue desvelando a los estadísticos.</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="widget">
+                <h3>Encuesta Paddock</h3>
+                <div class="encuesta-box">
+                    <p>¿Creés que la motivación amorosa ayudará a Baztarrica a subirse al podio este fin de semana?</p>
+                    
+                    <div class="opcion-progreso">
+                        <div class="opcion-info">
+                            <span>Sí, va a estar intratable</span>
+                            <span>74%</span>
+                        </div>
+                        <div class="barra-gris">
+                            <div class="barra-roja" style="width: 74%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="opcion-progreso">
+                        <div class="opcion-info">
+                            <span>No, la presión le va a jugar en contra</span>
+                            <span>26%</span>
+                        </div>
+                        <div class="barra-gris">
+                            <div class="barra-roja" style="width: 26%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </sidebar>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Mundo Motor Periodismo Digital. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
